@@ -12,8 +12,8 @@ jobs:
     - name: Run all unit tests
       run: |
         echo Run test
-        # npm install
-        # npm run test
+        npm install
+        npm run test
   lint:
 
     runs-on: ubuntu-latest
@@ -23,6 +23,6 @@ jobs:
     - name: Check for linting
       run: |
         echo Run lint
-        # npm install
-        # npm run lint
+        npm install
+        npm run lint
 
