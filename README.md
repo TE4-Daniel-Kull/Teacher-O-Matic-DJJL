@@ -1,6 +1,6 @@
 [![Actions Status](https://github.com/itggot-TE4/TE4/workflows/tests/badge.svg)](https://github.com/itggot-TE4/Yala/actions)
 # DJJL
-A fully JavaScript webapplication where a user can view all repositories of a given github user/organisation.
+A fully built JavaScript webapplication where a user can view all repositories of a given github user/organisation.
 You will also be able to view all the forks of each repository.
 
 ## Project management setup
