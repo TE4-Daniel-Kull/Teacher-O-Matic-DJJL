@@ -1,1 +1,28 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+header {
+  padding: 5px;
+  padding-bottom: 5px;
+  width: 100vw;
+  height: 7.5vh;
+  background-color: #b5416c;
+}
+
+header input {
+  width: 97%;
+  height: 100%;
+  font-size: 1.75rem;
+  border-radius: 5px;
+  background: #b5416c;
+  border-style: none;
+}
+
+header input:focus {
+  background: white;
+}
+/*# sourceMappingURL=style.css.map */
