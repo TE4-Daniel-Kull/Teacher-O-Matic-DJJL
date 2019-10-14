@@ -4,7 +4,8 @@ function qS(selector) {
   return document.querySelector(selector);
 }
 
-qS('input').addEventListener('keydown', async (e) => {
+qS('header input').addEventListener('keydown', async (e) => {
   if(e.code != 'Enter') return
-  await API.search()
+  const value = qS('header input').value
+  await API.search(value)
 })
