@@ -12,7 +12,7 @@ qS('header input').addEventListener('keydown', (e) => {
 
 qS('main').addEventListener('click', (e)  => {
   if(e.target.classList.contains('forks')) {
-    const href = e.target.href
-    API.forks(href)
+    const href = e.target.href;
+    API.forks(href);
   }
 })
