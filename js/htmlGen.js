@@ -1,25 +1,46 @@
+import { API } from './api.js'
+
 function qS(selector) {
     return document.querySelector(selector);
   }
 
+function iN(selector) {
+    return document.importNode(qS(selector).content, true).firstElementChild;
+}
+
 export class Generator {
     static clear() {
-        qS('main').innerhtml = '';
+        qS('main').innerHTML = '';
     }
+
     static repoCard(repo) {
         const dataDiv = qS('main')
-        const repoTemplate = document.importNode(qS('template#repo-card').content, true).firstElementChild;
+        const repoTemplate = iN('template#repo-card')
         for (const [key, value] of Object.entries(repo)) {
             if(repoTemplate.querySelector(`.${key}`)) {
                 if(repoTemplate.querySelector(`.${key}`).tagName == 'A') repoTemplate.querySelector(`.${key}`).href = value;
                 else {
-                    const textNode = document.createTextNode(value)
-                    repoTemplate.querySelector(`.${key}`).appendChild(textNode);
+                    repoTemplate.querySelector(`.${key}`).innerHTML = value;
                 }
             }
         }
-        console.log(repoTemplate)
         dataDiv.appendChild(repoTemplate);
+    }
+
+    static async forkCard(fork) {
+        const codeSnippet = await API.forkedFile(fork.url);
+        if(!codeSnippet) return
+        const dataDiv = qS('main');
+        const forkTemplate = iN('template#fork-card');
+        console.log(fork)
+        for (const [key,value] of Object.entries(fork)){
+           if(forkTemplate.querySelector(`.${key}`)){
+               const textNode = document.createTextNode(value);
+               forkTemplate.querySelector(`.${key}`).appendChild(textNode);
+           }
+        }
+        forkTemplate.querySelector('code.code-snippet').innerHTML = codeSnippet
+        dataDiv.appendChild(forkTemplate);
     }
 
 }
