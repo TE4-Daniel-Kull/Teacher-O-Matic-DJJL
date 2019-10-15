@@ -21,6 +21,7 @@ header {
   width: 100vw;
   height: 7.5vh;
   background-color: #b5416c;
+  position: fixed;
 }
 
 header input {
