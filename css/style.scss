@@ -8,13 +8,16 @@ $primary-color: rgb(181, 65, 108);
 
 header {
   padding: 5px;
-  padding-bottom: 5px;
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  grid-gap: 5px;
+  justify-content: center;
+  align-items: center;
   width: 100vw;
   height: 7.5vh;
   background-color: $primary-color;
 
   input {
-    width: 97%;
     height: 100%;
     font-size: 1.75rem;
     border-radius: 5px;
