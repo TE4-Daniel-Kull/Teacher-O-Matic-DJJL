@@ -10,10 +10,9 @@ export class API {
   
 
   static async forks(href) {
-    const response = await fetch(href, options);
+    const response = await fetch(href + oauth, options);
     const data = await response.json();
     return data;
   }
-
 
 }

@@ -16,7 +16,7 @@ qS('header input').addEventListener('keydown', async (e) => {
   });
 })
 
-qS('main').addEventListener('click', (e)  => {
+qS('main').addEventListener('click', async (e)  => {
   if(e.target.classList.contains('forks')) {
     const href = e.target.href;
     API.forks(href);
