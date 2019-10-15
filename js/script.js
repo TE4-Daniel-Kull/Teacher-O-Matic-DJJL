@@ -10,7 +10,6 @@ qS('header input').addEventListener('keydown', async (e) => {
   const value = qS('header input').value;
   Generator.clear()
   const repos = await API.search(value)
-  console.log(repos)
   repos.forEach(repo => {
       Generator.repoCard(repo)
   });

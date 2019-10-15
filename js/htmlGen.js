@@ -18,7 +18,6 @@ export class Generator {
                 }
             }
         }
-        console.log(repoTemplate)
         dataDiv.appendChild(repoTemplate);
     }
 
