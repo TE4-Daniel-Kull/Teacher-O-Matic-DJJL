@@ -1,20 +1,18 @@
-const options = {client_id: "d8e0bd6b8e516a3a6a83", 
-                header: {
-                  Accept: "application/vnd.github.v3+json"
-                }};
+import { oauth } from './config.js'             
 
 export class API {
 
   static async search(value) {
-    const response = await fetch(`https://api.github.com/users/${value}/repos`, options);
+    const response = await fetch(`https://api.github.com/users/${value}/repos${oauth}`, );
     const data = await response.json(); 
     return data;
   }
+  
 
   static async forks(href) {
-    const response = await fetch(href, options);
+    const response = await fetch(href + oauth, options);
     const data = await response.json();
     return data;
   }
 
-} 
+}
