@@ -32,7 +32,6 @@ export class Generator {
         if(!codeSnippet) return
         const dataDiv = qS('main');
         const forkTemplate = iN('template#fork-card');
-        console.log(fork)
         for (const [key,value] of Object.entries(fork)){
            if(forkTemplate.querySelector(`.${key}`)){
                const textNode = document.createTextNode(value);
