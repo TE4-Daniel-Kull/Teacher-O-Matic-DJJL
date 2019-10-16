@@ -11,9 +11,9 @@ jobs:
     - uses: actions/checkout@v1
     - name: Run all unit tests
       run: |
-        echo Run test
-        npm install
-        npm run test
+        # echo Run test
+        # npm install
+        # npm run test
   lint:
 
     runs-on: ubuntu-latest
