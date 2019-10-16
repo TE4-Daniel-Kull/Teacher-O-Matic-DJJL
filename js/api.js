@@ -18,9 +18,9 @@ export class API {
     const response = await fetch(url + '/contents/.manifest.json' + oauth);
     const data = await response.json();
     const decoded = JSON.parse(atob(data.content))
-    const responseAF = await fetch(url + `/contents/${decoded["filePath"]}` + oauth)
+    const responseAF = await fetch(url + `/contents/${decoded["filePath"]}` + oauth);
     const actualData = await responseAF.json();
-    if(actualData.message == "Not Found") return false
-    return atob(actualData.content)
+    if(actualData.message == "Not Found") return false;
+    return atob(actualData.content);
   }
 }
