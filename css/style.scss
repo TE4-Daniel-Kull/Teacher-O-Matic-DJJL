@@ -147,6 +147,27 @@ main {
         color: white;
       }
     }
-  }
 
+    div.comments {
+
+      article {
+        margin: 10px 0;
+        border-bottom: solid 1px grey;
+        display: flex;
+        align-items: center;
+        font-size: 0.8rem;
+        color: rgb(96, 96, 96);
+        
+        &:first-child {
+          font-weight: bold;
+          font-size: 1.25rem;
+          color: rgb(50, 49, 49);
+        }
+
+        i {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
 }

@@ -166,4 +166,27 @@ main div.fork-div form button[type=submit] {
   background: #27A599;
   color: white;
 }
+
+main div.fork-div div.comments article {
+  margin: 10px 0;
+  border-bottom: solid 1px grey;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 0.8rem;
+  color: #606060;
+}
+
+main div.fork-div div.comments article:first-child {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #323131;
+}
+
+main div.fork-div div.comments article i {
+  margin-right: 5px;
+}
 /*# sourceMappingURL=style.css.map */

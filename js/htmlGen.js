@@ -43,12 +43,18 @@ export class Generator {
             const comment = e.target.querySelector('input.comment').value;
             e.target.querySelector('input.comment').value = '';
             const status = e.target.querySelector('input[type="radio"]:checked').value;
-            Generator.commentCard(comment, e.target.parentNode);
+            Generator.commentCard(comment, status, e.target.parentNode);
         })
     }
 
-    static commentCard(comment, forkCard) {
-        const commentElement = document.createTextNode(comment); 
+    static commentCard(comment, status, forkCard) {
+        const commentElement = iN('template#comment')
+        let icon;
+        if(status == 200) icon = 'done'
+        else if(status == 406) icon = 'replay'
+        else icon = 'visibility_off'
+        commentElement.querySelector('i').innerHTML = icon
+        commentElement.querySelector('p').innerHTML = comment
         forkCard.querySelector('.comments').prepend(commentElement);
     } 
 
