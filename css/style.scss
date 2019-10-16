@@ -94,13 +94,11 @@ main {
 
   div.fork-div {
     padding: 10px;
-    display: grid;
-    grid-row-gap: 10px;
 
     pre {
-      background: rgb(69, 68, 68);
-      color: white;
       padding: 10px;
+      max-height: 40vh;
+      overflow: auto;
     }
   }
 

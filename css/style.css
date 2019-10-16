@@ -106,14 +106,11 @@ main div.repo-div h1 {
 
 main div.fork-div {
   padding: 10px;
-  display: -ms-grid;
-  display: grid;
-  grid-row-gap: 10px;
 }
 
 main div.fork-div pre {
-  background: #454444;
-  color: white;
   padding: 10px;
+  max-height: 40vh;
+  overflow: auto;
 }
 /*# sourceMappingURL=style.css.map */
