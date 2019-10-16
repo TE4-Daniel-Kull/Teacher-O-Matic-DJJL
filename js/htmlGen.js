@@ -15,8 +15,8 @@ export class Generator {
     }
 
     static repoCard(repo) {
-        const dataDiv = qS('main')
-        const repoTemplate = iN('template#repo-card')
+        const dataDiv = qS('main');
+        const repoTemplate = iN('template#repo-card');
         for (const [key, value] of Object.entries(repo)) {
             if(repoTemplate.querySelector(`.${key}`)) {
                 if(repoTemplate.querySelector(`.${key}`).tagName == 'A') repoTemplate.querySelector(`.${key}`).href = value;
@@ -30,7 +30,7 @@ export class Generator {
 
     static async forkCard(fork) {
         const codeSnippet = await API.forkedFile(fork.url);
-        if(!codeSnippet) return
+        if(!codeSnippet) return;
         const dataDiv = qS('main');
         const forkTemplate = iN('template#fork-card');
         forkTemplate.querySelector('h3.owner').innerHTML = fork.owner.login + '/' + fork.name;
@@ -38,6 +38,18 @@ export class Generator {
         forkTemplate.querySelector('a.html_url').href = fork.html_url;
         hljs.highlightBlock(forkTemplate.querySelector('pre code'));
         dataDiv.appendChild(forkTemplate);
+        forkTemplate.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const comment = e.target.querySelector('input.comment').value;
+            e.target.querySelector('input.comment').value = '';
+            const status = e.target.querySelector('input[type="radio"]:checked').value;
+            Generator.commentCard(comment, e.target.parentNode);
+        })
     }
+
+    static commentCard(comment, forkCard) {
+        const commentElement = document.createTextNode(comment); 
+        forkCard.querySelector('.comments').prepend(commentElement);
+    } 
 
 }

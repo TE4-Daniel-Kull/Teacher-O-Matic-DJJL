@@ -11,9 +11,9 @@ qS('header input').addEventListener('keydown', async (e) => {
   qS('main').classList.remove('double');
   const value = qS('header input').value;
   Generator.clear();
-  const repos = await API.search(value)
+  const repos = await API.search(value);
   repos.forEach(repo => {
-      Generator.repoCard(repo)
+      Generator.repoCard(repo);
   });
 })
 
@@ -31,4 +31,7 @@ qS('main').addEventListener('click', async (e)  => {
     })
   }
 })
+
+
+
 

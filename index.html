@@ -25,8 +25,21 @@
       <h3 class="owner"></h3>
       <pre><code class="code-snippet"></code></pre>
       <a class="html_url" href="">Show on Github</a>
+      <form method="POST" action="">
+        <label for="comment">Comment</label>
+        <input type="text" name="comment" class="comment" required>
+        <input type="radio" name="status" value="1">Klar<br>
+        <input type="radio" name="status" value="2">Åtgärd krävs<br>
+        <input type="radio" name="status" value="3">Ej bedömd
+        <button type="submit">Save</button>
+      </form>
+      <div class="comments">
 
-    </div>
+      </div>
+  </div>
+</template>
+  <template id="comment">
+    <h3 class="comment"></h3>
   </template>
   <header>
       <i class="material-icons">
@@ -35,6 +48,7 @@
     <input type="search">
   </header>
   <main class="double">
+    
   </main>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
