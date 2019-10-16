@@ -9,6 +9,7 @@ function iN(selector) {
 }
 
 export class Generator {
+
     static clear() {
         qS('main').innerHTML = '';
     }
@@ -32,13 +33,10 @@ export class Generator {
         if(!codeSnippet) return;
         const dataDiv = qS('main');
         const forkTemplate = iN('template#fork-card');
-        for (const [key,value] of Object.entries(fork)){
-           if(forkTemplate.querySelector(`.${key}`)){
-               const textNode = document.createTextNode(value);
-               forkTemplate.querySelector(`.${key}`).appendChild(textNode);
-           }
-        }
-        forkTemplate.querySelector('code.code-snippet').innerHTML = codeSnippet
+        forkTemplate.querySelector('h3.owner').innerHTML = fork.owner.login + '/' + fork.name;
+        forkTemplate.querySelector('code.code-snippet').innerHTML = codeSnippet;
+        forkTemplate.querySelector('a.html_url').href = fork.html_url;
+        hljs.highlightBlock(forkTemplate.querySelector('pre code'));
         dataDiv.appendChild(forkTemplate);
         forkTemplate.querySelector('form').addEventListener('submit', (e) => {
             e.preventDefault();
