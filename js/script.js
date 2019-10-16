@@ -25,13 +25,8 @@ qS('main').addEventListener('click', async (e)  => {
     const href = e.target.href;
     Generator.clear();
     const forks = await API.forks(href);
-    console.log(forks)
     await forks.forEach(async fork => {
       await Generator.forkCard(fork);
     })
   }
 })
-
-
-
-

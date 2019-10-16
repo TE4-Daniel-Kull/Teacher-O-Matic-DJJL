@@ -11,7 +11,7 @@
 </head>
 <body>
   <template id="repo-card">
-      <div class="repo-div">
+      <div class="repo-div card">
         <h1 class="name"></h1>
         <section>
           <a class="forks_url" href="">Show Forks</a>
@@ -21,17 +21,33 @@
       </div>
   </template>
   <template id="fork-card">
-    <div class="fork-div">
+    <div class="fork-div card">
       <h3 class="owner"></h3>
       <pre><code class="code-snippet"></code></pre>
       <a class="html_url" href="">Show on Github</a>
       <form method="POST" action="">
-        <label for="comment">Comment</label>
-        <input type="text" name="comment" class="comment" required>
-        <input type="radio" name="status" value="1">Klar<br>
-        <input type="radio" name="status" value="2">Åtgärd krävs<br>
-        <input type="radio" name="status" value="3">Ej bedömd
-        <button type="submit">Save</button>
+        <div>
+          <label for="comment">Comment</label>
+          <input type="text" name="comment" class="comment" autocomplete="off" required>
+        </div>
+        <section class="radios">
+          <section>
+            <input type="radio" name="status" id="1" value="1" required>
+            <i class="material-icons">done</i>
+            <label for="1">Klar</label>
+          </section>
+          <section>
+            <input type="radio" name="status" id="2" value="2" required>
+            <i class="material-icons">replay</i>
+            <label for="2">Åtgärd krävs</label>
+          </section>
+          <section>
+            <input type="radio" name="status" id="3" value="3" required>
+            <i class="material-icons">visibility_off</i>
+            <label for="3">Ej bedömd</label>
+          </section>
+        </section>
+        <button type="submit">SAVE</button>
       </form>
       <div class="comments">
 
