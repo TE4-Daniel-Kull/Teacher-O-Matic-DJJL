@@ -30,12 +30,16 @@ export class Generator {
     }
 
     static async forkCard(fork, mainManifest) {
-        console.log(mainManifest)
-        const subManifest = await API.manifest(fork.url)
-        const codeSnippet = await API.fileContent(fork.url, subManifest["filePath"]);
-        if(!codeSnippet) return;
+				const subManifest = await API.manifest(fork.url)
+				const codeSnippet = await API.fileContent(fork.url, subManifest["filePath"]);
+				const testResults = runTests(mainManifest, subManifest.functionSpan, codeSnippet);
         const dataDiv = qS('main');
         const forkTemplate = iN('template#fork-card');
+				testResults.forEach((res) => {
+					const li = document.createElement('li')
+					li.innerHTML = `Test "${res.desc}": ${res.status ? 'Passed' : 'Failed'}`
+					forkTemplate.querySelector('ul.tests').appendChild(li)
+				})
         forkTemplate.querySelector('h3.owner').innerHTML = fork.owner.login + '/' + fork.name;
         forkTemplate.querySelector('code.code-snippet').innerHTML = codeSnippet;
         forkTemplate.querySelector('a.html_url').href = fork.html_url;
@@ -61,5 +65,23 @@ export class Generator {
         commentElement.querySelector('p').innerHTML = comment
         forkCard.querySelector('.comments').prepend(commentElement);
     } 
+}
 
+function runTests(testData, span, code) {
+	const testResults = [];
+	const args = testData.functionParameters
+	code = code.split('\n').slice(span[0]-1, span[1]).join('')
+	if(code.length > 1) {
+		const func = new Function(args.join(','), code)
+		testData.tests.forEach((test) => {
+			const output = func.apply(null, test.arguments);
+			testResults.push({
+				desc: test.description,
+				expected: test.expected,
+				received: output,
+				status: output == test.expected
+			});
+		});
+	}
+	return testResults;
 }

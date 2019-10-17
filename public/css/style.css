@@ -114,6 +114,13 @@ main div.fork-div pre {
   overflow: auto;
 }
 
+main div.fork-div ul.tests {
+  padding-top: 10px;
+  padding-bottom: 15px;
+  list-style: none;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.19);
+}
+
 main div.fork-div form {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -135,7 +142,7 @@ main div.fork-div form div input {
   height: 20px;
   width: 100%;
   outline: none;
-  border-bottom: solid 1px rgba(0, 0, 0, 0.19);
+  border-bottom: solid 1px rgba(0, 0, 0, 0.502);
 }
 
 main div.fork-div form section.radios {
