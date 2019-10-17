@@ -1,5 +1,5 @@
-import { API } from './api.js'
-import { EventListener } from './event.js'
+import { API } from './api.js';
+import { EventListener } from './event.js';
 
 function qS(selector) {
     return document.querySelector(selector);
@@ -10,7 +10,6 @@ function iN(selector) {
 }
 
 export class Generator {
-
     static clear() {
         qS('main').innerHTML = '';
     }
@@ -19,9 +18,10 @@ export class Generator {
         const dataDiv = qS('main');
         const repoTemplate = iN('template#repo-card');
         for (const [key, value] of Object.entries(repo)) {
-            if(repoTemplate.querySelector(`.${key}`)) {
-                if(repoTemplate.querySelector(`.${key}`).tagName == 'A') repoTemplate.querySelector(`.${key}`).href = value;
-                else {
+            if (repoTemplate.querySelector(`.${key}`)) {
+								if (repoTemplate.querySelector(`.${key}`).tagName == 'A') {
+									repoTemplate.querySelector(`.${key}`).href = value;
+								} else {
                     repoTemplate.querySelector(`.${key}`).innerHTML = value;
                 }
             }
@@ -45,17 +45,19 @@ export class Generator {
         forkTemplate.querySelector('a.html_url').href = fork.html_url;
         hljs.highlightBlock(forkTemplate.querySelector('pre code')); // eslint-disable-line no-undef
         dataDiv.appendChild(forkTemplate);
-        forkTemplate.querySelector('form').addEventListener('submit', () => {EventListener.comment(event)});
+        forkTemplate.querySelector('form').addEventListener('submit', () => {
+					EventListener.comment(event);
+				});
     }
 
     static commentCard(comment, status, forkCard) {
         const commentElement = iN('template#comment');
         let icon;
-        switch(status) {
-            case '200': 
-                icon = 'done'; 
+        switch (status) {
+            case '200':
+                icon = 'done';
                 break;
-            case '406': 
+            case '406':
                 icon = 'replay';
                 break;
             default:
@@ -64,22 +66,22 @@ export class Generator {
         commentElement.querySelector('i').innerHTML = icon;
         commentElement.querySelector('p').innerHTML = comment;
         forkCard.querySelector('.comments').prepend(commentElement);
-    } 
+    }
 }
 
 function runTests(testData, span, code) {
 	const testResults = [];
 	const args = testData.functionParameters;
 	code = code.split('\n').slice(span[0]-1, span[1]).join('');
-	if(code.length > 1) {
+	if (code.length > 1) {
 		const func = new Function(args.join(','), code);
 		testData.tests.forEach((test) => {
-			const output = func.apply(null, test.arguments);
+			const output = func(...test.arguments);
 			testResults.push({
 				desc: test.description,
 				expected: test.expected,
 				received: output,
-				status: output == test.expected
+				status: output == test.expected,
 			});
 		});
 	}

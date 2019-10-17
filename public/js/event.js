@@ -6,21 +6,20 @@ function qS(selector) {
 }
 
 export class EventListener {
-
   static async search(e) {
-    if(e.code != 'Enter') return;
+    if (e.code != 'Enter') return;
     qS('main').classList.add('triple');
     qS('main').classList.remove('double');
     const value = qS('header input').value;
     Generator.clear();
     const repos = await API.search(value);
-    repos.forEach(repo => {
+    repos.forEach((repo) => {
         Generator.repoCard(repo);
     });
   }
 
   static async forks(e) {
-    if(e.target.classList.contains('url')) {
+    if (e.target.classList.contains('url')) {
       e.preventDefault();
       qS('main').classList.remove('triple');
       qS('main').classList.add('double');
@@ -28,7 +27,7 @@ export class EventListener {
       Generator.clear();
       const forks = await API.forks(href);
       const mainManifest = await API.manifest(href);
-      await forks.forEach(async fork => {
+      await forks.forEach(async (fork) => {
         await Generator.forkCard(fork, mainManifest);
       });
     }
