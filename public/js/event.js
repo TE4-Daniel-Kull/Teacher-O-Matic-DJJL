@@ -27,7 +27,7 @@ export class EventListener {
       const href = e.target.href;
       Generator.clear();
       const forks = await API.forks(href);
-      const mainManifest = await API.manifest(href)
+      const mainManifest = await API.manifest(href);
       await forks.forEach(async fork => {
         await Generator.forkCard(fork, mainManifest);
       })

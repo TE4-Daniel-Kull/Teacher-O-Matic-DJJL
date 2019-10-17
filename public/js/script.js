@@ -4,6 +4,6 @@ function qS(selector) {
   return document.querySelector(selector);
 }
 
-qS('header input').addEventListener('keydown', () => {EventListener.search(event)})
+qS('header input').addEventListener('keydown', () => {EventListener.search(event)});
 
-qS('main').addEventListener('click', ()  => {EventListener.forks(event)})
+qS('main').addEventListener('click', ()  => {EventListener.forks(event)});
