@@ -4,7 +4,9 @@ function qS(selector) {
   return document.querySelector(selector);
 }
 
-qS('header input').addEventListener('keydown', () => {
+qS('header form').addEventListener('submit', () => {
+  event.preventDefault();
+  console.log('yey')
   EventListener.search(event);
 });
 
