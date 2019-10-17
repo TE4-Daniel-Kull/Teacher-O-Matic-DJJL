@@ -1,4 +1,5 @@
 import { API } from './api.js'
+import { EventListener } from './event.js'
 
 function qS(selector) {
     return document.querySelector(selector);
@@ -38,13 +39,7 @@ export class Generator {
         forkTemplate.querySelector('a.html_url').href = fork.html_url;
         hljs.highlightBlock(forkTemplate.querySelector('pre code')); // eslint-disable-line no-undef
         dataDiv.appendChild(forkTemplate);
-        forkTemplate.querySelector('form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const comment = e.target.querySelector('input.comment').value;
-            e.target.querySelector('input.comment').value = '';
-            const status = e.target.querySelector('input[type="radio"]:checked').value;
-            Generator.commentCard(comment, status, e.target.parentNode);
-        })
+        forkTemplate.querySelector('form').addEventListener('submit', () => {EventListener.comment(event)})
     }
 
     static commentCard(comment, status, forkCard) {

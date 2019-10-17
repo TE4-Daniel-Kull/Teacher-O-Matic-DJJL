@@ -5,7 +5,7 @@ function qS(selector) {
   return document.querySelector(selector);
 }
 
-export class EventListeners {
+export class EventListener {
 
   static async search(e) {
     if(e.code != 'Enter') return;
@@ -31,6 +31,14 @@ export class EventListeners {
         await Generator.forkCard(fork);
       })
     }
+  }
+
+  static comment(e) {
+    e.preventDefault();
+    const comment = e.target.querySelector('input.comment').value;
+    e.target.querySelector('input.comment').value = '';
+    const status = e.target.querySelector('input[type="radio"]:checked').value;
+    Generator.commentCard(comment, status, e.target.parentNode);
   }
 
 }
