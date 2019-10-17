@@ -36,19 +36,32 @@ export class Generator {
         forkTemplate.querySelector('h3.owner').innerHTML = fork.owner.login + '/' + fork.name;
         forkTemplate.querySelector('code.code-snippet').innerHTML = codeSnippet;
         forkTemplate.querySelector('a.html_url').href = fork.html_url;
-        hljs.highlightBlock(forkTemplate.querySelector('pre code'));
+        hljs.highlightBlock(forkTemplate.querySelector('pre code')); // eslint-disable-line no-undef
         dataDiv.appendChild(forkTemplate);
         forkTemplate.querySelector('form').addEventListener('submit', (e) => {
             e.preventDefault();
             const comment = e.target.querySelector('input.comment').value;
             e.target.querySelector('input.comment').value = '';
             const status = e.target.querySelector('input[type="radio"]:checked').value;
-            Generator.commentCard(comment, e.target.parentNode);
+            Generator.commentCard(comment, status, e.target.parentNode);
         })
     }
 
-    static commentCard(comment, forkCard) {
-        const commentElement = document.createTextNode(comment); 
+    static commentCard(comment, status, forkCard) {
+        const commentElement = iN('template#comment')
+        let icon;
+        switch(status) {
+            case '200': 
+                icon = 'done'; 
+                break;
+            case '406': 
+                icon = 'replay';
+                break;
+            default:
+                icon = 'visibility_off';
+        }
+        commentElement.querySelector('i').innerHTML = icon
+        commentElement.querySelector('p').innerHTML = comment
         forkCard.querySelector('.comments').prepend(commentElement);
     } 
 
