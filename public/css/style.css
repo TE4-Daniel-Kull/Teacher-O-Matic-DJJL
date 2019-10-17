@@ -171,6 +171,12 @@ main div.fork-div form button[type=submit] {
   color: white;
 }
 
+main div.fork-div div.comments {
+  margin-top: 25px;
+  max-height: 25vh;
+  overflow: auto;
+}
+
 main div.fork-div div.comments article {
   margin: 10px 0;
   border-bottom: solid 1px grey;
@@ -192,5 +198,6 @@ main div.fork-div div.comments article:first-child {
 
 main div.fork-div div.comments article i {
   margin-right: 5px;
+  margin-bottom: auto;
 }
 /*# sourceMappingURL=style.css.map */
