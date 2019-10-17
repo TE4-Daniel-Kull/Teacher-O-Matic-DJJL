@@ -31,9 +31,8 @@ export class Generator {
 
     static async forkCard(fork, mainManifest) {
 				const subManifest = await API.manifest(fork.url)
-				let codeSnippet, testResults = []; 
-				codeSnippet = await API.fileContent(fork.url, subManifest["filePath"]);
-				testResults = runTests(mainManifest, subManifest.functionSpan, codeSnippet);
+				const codeSnippet = await API.fileContent(fork.url, subManifest["filePath"]);
+				const testResults = runTests(mainManifest, subManifest.functionSpan, codeSnippet);
         const dataDiv = qS('main');
         const forkTemplate = iN('template#fork-card');
 				testResults.forEach((res) => {
