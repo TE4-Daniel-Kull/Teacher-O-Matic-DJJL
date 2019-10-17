@@ -41,7 +41,6 @@ export class Generator {
 					li.innerHTML = `Test "${res.desc}": ${res.status ? 'Passed' : 'Failed'}`
 					forkTemplate.querySelector('ul.tests').appendChild(li)
 				})
-				console.log(testResults)
         forkTemplate.querySelector('h3.owner').innerHTML = fork.owner.login + '/' + fork.name;
         forkTemplate.querySelector('code.code-snippet').innerHTML = codeSnippet;
         forkTemplate.querySelector('a.html_url').href = fork.html_url;
