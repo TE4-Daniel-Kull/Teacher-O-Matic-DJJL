@@ -1,4 +1,4 @@
-import { oauth } from './config.js'             
+import {oauth} from './config.js';
 
 export class API {
   static async search(value) {
@@ -16,14 +16,18 @@ export class API {
   static async manifest(url) {
     const response = await fetch(`${url}/contents/.manifest.json${oauth}`);
     const data = await response.json();
-    if (data.message == 'Not Found') return 'Unable to find .manifest.json file';
+    if (data.message == 'Not Found') {
+      return 'Unable to find .manifest.json file';
+    }
     return JSON.parse(atob(data.content));
   }
 
   static async fileContent(url, filePath) {
     const response = await fetch(`${url}/contents/${filePath}${oauth}`);
     const data = await response.json();
-    if (data.message == 'Not Found') return 'Unable to find file specified in .manifest.json';
+    if (data.message == 'Not Found') {
+      return 'Unable to find file specified in .manifest.json';
+    }
     return atob(data.content);
   }
 }

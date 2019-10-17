@@ -40,5 +40,4 @@ export class EventListener {
     const status = e.target.querySelector('input[type="radio"]:checked').value;
     Generator.commentCard(comment, status, e.target.parentNode);
   }
-
 }

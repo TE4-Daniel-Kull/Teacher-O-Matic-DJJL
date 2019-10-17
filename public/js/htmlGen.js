@@ -31,19 +31,19 @@ export class Generator {
 
     static async forkCard(fork, mainManifest) {
 				const subManifest = await API.manifest(fork.url);
-				const codeSnippet = await API.fileContent(fork.url, subManifest['filePath']);
-				const testResults = runTests(mainManifest, subManifest.functionSpan, codeSnippet);
+				const codeSnippet = await API.fileContent(fork.url, subManifest['filePath']); // eslint-disable-line max-len
+				const testResults = runTests(mainManifest, subManifest.functionSpan, codeSnippet); // eslint-disable-line max-len
         const dataDiv = qS('main');
         const forkTemplate = iN('template#fork-card');
 				testResults.forEach((res) => {
 					const li = document.createElement('li');
-					li.innerHTML = `Test "${res.desc}": ${res.status ? 'Passed' : 'Failed'}`;
+					li.innerHTML = `Test "${res.desc}": ${res.status ? 'Passed' : 'Failed'}`; // eslint-disable-line max-len
 					forkTemplate.querySelector('ul.tests').appendChild(li);
 				});
-        forkTemplate.querySelector('h3.owner').innerHTML = fork.owner.login + '/' + fork.name;
+        forkTemplate.querySelector('h3.owner').innerHTML = fork.owner.login + '/' + fork.name; // eslint-disable-line max-len
         forkTemplate.querySelector('code.code-snippet').innerHTML = codeSnippet;
         forkTemplate.querySelector('a.html_url').href = fork.html_url;
-        hljs.highlightBlock(forkTemplate.querySelector('pre code')); // eslint-disable-line no-undef
+        hljs.highlightBlock(forkTemplate.querySelector('pre code')); // eslint-disable-line no-undef, max-len
         dataDiv.appendChild(forkTemplate);
         forkTemplate.querySelector('form').addEventListener('submit', () => {
 					EventListener.comment(event);
