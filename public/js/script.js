@@ -6,7 +6,6 @@ function qS(selector) {
 
 qS('header form').addEventListener('submit', () => {
   event.preventDefault();
-  console.log('yey')
   EventListener.search(event);
 });
 
