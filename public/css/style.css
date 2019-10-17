@@ -5,10 +5,6 @@
           box-sizing: border-box;
 }
 
-.nodisplay {
-  display: none;
-}
-
 header {
   padding: 5px;
   display: -ms-grid;
