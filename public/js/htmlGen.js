@@ -70,10 +70,9 @@ export class Generator {
 function runTests(testData, span, code) {
 	const testResults = [];
 	const args = testData.functionParameters
-	let func;
 	code = code.split('\n').slice(span[0]-1, span[1]).join('')
 	if(code.length > 1) {
-		func = new Function(args.join(','), code)
+		const func = new Function(args.join(','), code)
 		testData.tests.forEach((test) => {
 			const output = func.apply(null, test.arguments);
 			testResults.push({
