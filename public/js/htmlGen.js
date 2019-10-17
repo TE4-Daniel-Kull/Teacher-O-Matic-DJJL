@@ -29,8 +29,10 @@ export class Generator {
         dataDiv.appendChild(repoTemplate);
     }
 
-    static async forkCard(fork) {
-        const codeSnippet = await API.forkedFile(fork.url);
+    static async forkCard(fork, mainManifest) {
+        console.log(mainManifest)
+        const subManifest = await API.manifest(fork.url)
+        const codeSnippet = await API.fileContent(fork.url, subManifest["filePath"]);
         if(!codeSnippet) return;
         const dataDiv = qS('main');
         const forkTemplate = iN('template#fork-card');

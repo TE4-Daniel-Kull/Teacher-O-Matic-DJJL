@@ -20,15 +20,16 @@ export class EventListener {
   }
 
   static async forks(e) {
-    if(e.target.classList.contains('forks_url')) {
+    if(e.target.classList.contains('url')) {
       e.preventDefault();
       qS('main').classList.remove('triple');
       qS('main').classList.add('double');
       const href = e.target.href;
       Generator.clear();
       const forks = await API.forks(href);
+      const mainManifest = await API.manifest(href)
       await forks.forEach(async fork => {
-        await Generator.forkCard(fork);
+        await Generator.forkCard(fork, mainManifest);
       })
     }
   }
