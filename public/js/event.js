@@ -7,7 +7,6 @@ function qS(selector) {
 
 export class EventListener {
   static async search(e) {
-    if (e.code != 'Enter') return;
     qS('main').classList.add('triple');
     qS('main').classList.remove('double');
     const value = qS('header input').value;

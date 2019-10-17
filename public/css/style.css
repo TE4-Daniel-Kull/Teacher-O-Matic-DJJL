@@ -29,6 +29,7 @@ header {
 
 header input {
   height: 100%;
+  width: 98%;
   margin-right: 25px;
   font-size: 1.75rem;
   border-radius: 5px;
