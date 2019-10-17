@@ -39,7 +39,7 @@ export class Generator {
 					const li = document.createElement('li');
 					li.innerHTML = `Test "${res.desc}": ${res.status ? 'Passed' : 'Failed'}`;
 					forkTemplate.querySelector('ul.tests').appendChild(li);
-				})
+				});
         forkTemplate.querySelector('h3.owner').innerHTML = fork.owner.login + '/' + fork.name;
         forkTemplate.querySelector('code.code-snippet').innerHTML = codeSnippet;
         forkTemplate.querySelector('a.html_url').href = fork.html_url;
@@ -49,7 +49,7 @@ export class Generator {
     }
 
     static commentCard(comment, status, forkCard) {
-        const commentElement = iN('template#comment')
+        const commentElement = iN('template#comment');
         let icon;
         switch(status) {
             case '200': 

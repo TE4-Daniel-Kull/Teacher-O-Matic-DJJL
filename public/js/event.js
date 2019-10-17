@@ -30,7 +30,7 @@ export class EventListener {
       const mainManifest = await API.manifest(href);
       await forks.forEach(async fork => {
         await Generator.forkCard(fork, mainManifest);
-      })
+      });
     }
   }
 
