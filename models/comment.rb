@@ -1,4 +1,5 @@
 require 'sqlite3'
+require 'json'
 require_relative 'database_model.rb'
 
 class Comment
@@ -11,14 +12,32 @@ class Comment
     def self.all 
         db = DatabaseModel.get_database
         result = db.execute('SELECT * FROM comments')
-        return list_to_obj(result)
+        return result #list_to_obj(result)
     end
 
+    def self.get(fork_id)
+        db = DatabaseModel.get_database
+        result = db.execute('SELECT comments.id, comments.type, comments.message FROM comments 
+            JOIN comment_fork_relations ON comments.id = comment_fork_relations.comment_id 
+            JOIN forks ON comment_fork_relations.fork_id = forks.id
+            WHERE comment_fork_relations.fork_id = ?', [fork_id])
+        return result #list_to_obj(result)
+    end
+
+    def self.get_fork_id(git_id) 
+        db = DatabaseModel.get_database
+        result = db.execute('SELECT id FROM forks WHERE git_id = ?', [git_id])[0]
+        p result['id']
+        return result['id']
+    end
+
+    # NOT IMPLEMENTED FOR HASH
     def self.list_to_obj(results)
         result_objs = results.map {|x| Comment.to_obj(x)}
         return result_objs
     end
 
+    # NOT IMPLEMENTED FOR HASH
     def self.to_obj(result)
         return Comment.new(result[0], result[1], result[2])
     end

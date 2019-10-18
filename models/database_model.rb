@@ -2,7 +2,9 @@ require 'sqlite3'
 
 class DatabaseModel
     def self.init_database() 
-        return SQLite3::Database.new('../db/database.db') 
+        database = SQLite3::Database.new('db/database.db') 
+        database.results_as_hash = true
+        return database
     end
     @@db = DatabaseModel.init_database()
     
