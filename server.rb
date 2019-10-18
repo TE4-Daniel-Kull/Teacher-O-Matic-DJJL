@@ -53,10 +53,10 @@ class Server < Sinatra::Base
     get '/api/fork_comments/:git_id' do
         git_id = params['git_id']
         p git_id.to_i
-        fork_id = Comment.get_fork_id(git_id.to_i)
-        p fork_id
-        comments = Comment.get(fork_id).to_json
-        p comments
+        comments = []
+        # fork_id = Comment.get_fork_id(git_id.to_i)
+        comments = Comment.get(git_id).to_json
+        p "comments #{comments}"
 
         return comments
     end
@@ -77,15 +77,6 @@ end
 #     body: JSON.stringify({id: id, type: type, message: message}),
 # });
 
-# CREATE COMMENT
-# let newPath = window.location.origin.concat('/api/comments');
-# let fork_id = 1
-# let type = '101'
-# let message = "Well done my booi!"
-# const response = await fetch(newPath, {
-#     method: 'POST',
-#     body: JSON.stringify({fork_id: fork_id, type: type, message: message}),
-# });
 
 # DELETE COMMENT
 # let newPath = window.location.origin.concat('/api/comments');
@@ -93,6 +84,16 @@ end
 # const response = await fetch(newPath, {
 #     method: 'DELETE',
 #     body: JSON.stringify({id: id}),
+# });
+
+# CREATE COMMENT
+# let fork_id = 1
+# let newPath = window.location.origin.concat('/api/comments');
+# let type = '101'
+# let message = "Well done my booi!"
+# const response = await fetch(newPath, {
+#     method: 'POST',
+#     body: JSON.stringify({fork_id: fork_id, type: type, message: message}),
 # });
 
 # GET COMMENTS FROM GIT ID

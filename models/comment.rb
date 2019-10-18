@@ -15,21 +15,25 @@ class Comment
         return result #list_to_obj(result)
     end
 
-    def self.get(fork_id)
+    def self.get(git_id)
         db = DatabaseModel.get_database
-        result = db.execute('SELECT comments.id, comments.type, comments.message FROM comments 
+        result = db.execute('SELECT * FROM comments 
             JOIN comment_fork_relations ON comments.id = comment_fork_relations.comment_id 
-            JOIN forks ON comment_fork_relations.fork_id = forks.id
-            WHERE comment_fork_relations.fork_id = ?', [fork_id])
+			JOIN forks ON comment_fork_relations.fork_id = forks.git_id
+			WHERE forks.git_id = ?', [git_id])
         return result #list_to_obj(result)
     end
 
-    def self.get_fork_id(git_id) 
-        db = DatabaseModel.get_database
-        result = db.execute('SELECT id FROM forks WHERE git_id = ?', [git_id])[0]
-        p result['id']
-        return result['id']
-    end
+    # def self.get_fork_id(git_id) 
+    #     db = DatabaseModel.get_database
+    #     result = db.execute('SELECT id FROM forks WHERE git_id = ?', [git_id]).first
+    #     p result
+    #     if result 
+    #         return result['id']
+    #     else
+    #         return nil 
+    #     end
+    # end
 
     # NOT IMPLEMENTED FOR HASH
     def self.list_to_obj(results)
@@ -49,6 +53,9 @@ class Comment
                     ORDER BY id DESC')[0][0]
         
         db.execute('INSERT INTO comment_fork_relations (comment_id, fork_id) VALUES(?, ?)', [new_comment_id, fork_id])
+        if !db.execute('SELECT * FROM forks WHERE git_id = ?', fork_id).any?
+            db.execute('INSERT INTO forks (git_id) VALUES (?)', fork_id)
+        end
     end
 
     def self.delete(id)
@@ -60,5 +67,5 @@ class Comment
     def self.update(id, type, message)
         db = DatabaseModel.get_database()
         db.execute("UPDATE comments SET type = $1, message = $2 WHERE id = $3", [type, message, id])
-      end
+    end
 end

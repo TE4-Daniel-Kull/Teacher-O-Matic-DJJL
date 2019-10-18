@@ -60,11 +60,13 @@ export class EventListener {
    *
    * @param {EventObject} e Object containing all data regarding the event
    */
-  static comment(e) {
+  static async comment(e) {
     e.preventDefault();
     const comment = e.target.querySelector('input.comment').value;
     e.target.querySelector('input.comment').value = '';
     const status = e.target.querySelector('input[type="radio"]:checked').value;
+    const id = e.target.querySelector('input[type="hidden"]').value;
+    await API.createComment(comment, status, id);
     Generator.commentCard(comment, status, e.target.parentNode);
   }
 }
