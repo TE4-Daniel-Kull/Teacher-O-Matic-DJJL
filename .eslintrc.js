@@ -20,11 +20,5 @@ module.exports = {
     'require-jsdoc': 'off',
     'max-len': 'warn',
     'no-tabs': 'off'
-  },
-  'overrides': [
-    {
-      'files': 'public/js/*',
-      'excludedFiles': 'docs/*'
-    }
-  ]
+  }
 };
