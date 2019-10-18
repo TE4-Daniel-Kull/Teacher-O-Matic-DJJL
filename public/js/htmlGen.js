@@ -70,7 +70,7 @@ export class Generator {
         hljs.highlightBlock(forkTemplate.querySelector('pre code')); // eslint-disable-line no-undef, max-len
         dataDiv.appendChild(forkTemplate);
 		comments.forEach((comment) => {
-			Generator.commentCard(comment.message, comment.type, forkTemplate);	
+			Generator.commentCard(comment.message, comment.type, forkTemplate);
 		});
         forkTemplate.querySelector('form').addEventListener('submit', () => {
 			EventListener.comment(event);

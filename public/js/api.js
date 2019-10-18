@@ -70,7 +70,7 @@ export class API {
    *
    * @return {String} A String displaying data
    */
-  static async fileContent(url, filePath) { // eslint-disable-line no-trailing-spaces
+  static async fileContent(url, filePath) {
     const response = await fetch(`${url}/contents/${filePath}${oauth}`);
     const data = await response.json();
     if (data.message == 'Not Found') {
