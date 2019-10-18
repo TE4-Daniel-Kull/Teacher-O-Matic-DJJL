@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node_modules/.bin/jest",
     "test:coverage": "node_modules/.bin/jest --coverage",
-    "lint": "node_modules/.bin/eslint ."
+    "lint": "node_modules/.bin/eslint .",
+    "jsdoc": "node_modules/.bin/jsdoc public/js/ README.md"
   },
   "repository": {
     "type": "git",
