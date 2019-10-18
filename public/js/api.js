@@ -17,7 +17,10 @@ export class API {
     const response = await fetch(`${url}/contents/.manifest.json${oauth}`);
     const data = await response.json();
     if (data.message == 'Not Found') {
-      return 'Unable to find .manifest.json file';
+      return {status: 'error',
+              message: `Unable to find .manifest.json 
+                       file in the main repository`,
+             };
     }
     return JSON.parse(atob(data.content));
   }
