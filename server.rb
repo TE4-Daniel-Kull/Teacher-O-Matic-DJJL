@@ -99,32 +99,3 @@ end
 # let newPath = window.location.origin.concat('/api/fork_comments');
 # let git_id = 0
 # const response = await fetch(newPath + "/" + git_id)
-
-# 
-
-
-
-
-
-
-
-# # UPDATE
-# put "/api/employees/:id" do 
-#     body = JSON.parse(request.body.read)
-#     @db.execute("UPDATE employees SET name=?, phone=? WHERE id = ?", [body["name"], body["phone"], body["id"]])
-#     return "ok"
-# end
-
-# # CREATE
-# post "/api/employees/:id" do 
-#     body = JSON.parse(request.body.read)
-#     @db.execute("INSERT INTO employees(name, phone) VALUES(?, ?)", [body["name"], body["phone"], body["id"]])
-#     return "ok"
-# end
-
-# # DESTROY
-# delete "/api/employees/:id" do
-#     body = JSON.parse(request.body.read)
-#     result = @db.execute("DELETE FROM employees WHERE id = ?", [body["id"]])
-#     return "ok"
-# end
