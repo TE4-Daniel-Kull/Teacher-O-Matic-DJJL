@@ -1,0 +1,203 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+header {
+  padding: 5px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 30px 1fr;
+      grid-template-columns: 30px 1fr;
+  grid-gap: 5px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100vw;
+  height: 8vh;
+  background-color: #b5416c;
+  position: fixed;
+  z-index: 99;
+  -webkit-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.19);
+          box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.19);
+}
+
+header input {
+  height: 100%;
+  width: 98%;
+  margin-right: 25px;
+  font-size: 1.75rem;
+  border-radius: 5px;
+  background: #b5416c;
+  border-style: none;
+}
+
+header input:focus {
+  background: white;
+  outline: none;
+}
+
+header:focus-within {
+  background: white;
+}
+
+main {
+  display: -ms-grid;
+  display: grid;
+  grid-row-gap: 15px;
+  width: 80%;
+  margin: auto;
+  position: relative;
+  top: 20vh;
+  margin-bottom: 15px;
+}
+
+main.triple {
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+}
+
+main.double {
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+main div.card {
+  border: solid 1px rgba(0, 0, 0, 0.19);
+  -webkit-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.19);
+          box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+}
+
+main div.repo-div {
+  padding: 10px;
+}
+
+main div.repo-div section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 15px;
+}
+
+main div.repo-div section a:nth-child(1) {
+  padding-right: 10px;
+}
+
+main div.repo-div section a:nth-child(2) {
+  padding-left: 10px;
+  border-left: solid 1px #000;
+}
+
+main div.repo-div section p {
+  margin-left: auto;
+  margin-right: 15px;
+  color: #6b6464;
+}
+
+main div.repo-div h1 {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+main div.fork-div {
+  padding: 10px;
+}
+
+main div.fork-div pre {
+  padding: 10px 0;
+  max-height: 40vh;
+  overflow: auto;
+}
+
+main div.fork-div ul.tests {
+  padding-top: 10px;
+  padding-bottom: 15px;
+  list-style: none;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.19);
+}
+
+main div.fork-div form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-top: 10px;
+}
+
+main div.fork-div form div label {
+  color: grey;
+  font-size: 0.75rem;
+}
+
+main div.fork-div form div input {
+  border: none;
+  height: 20px;
+  width: 100%;
+  outline: none;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.502);
+}
+
+main div.fork-div form section.radios {
+  margin: 10px 0;
+}
+
+main div.fork-div form section.radios section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: grey;
+}
+
+main div.fork-div form section.radios section i {
+  padding-left: 5px;
+}
+
+main div.fork-div form button[type=submit] {
+  width: 50px;
+  height: 30px;
+  background: #27A599;
+  color: white;
+}
+
+main div.fork-div div.comments {
+  margin-top: 25px;
+  max-height: 25vh;
+  overflow: auto;
+}
+
+main div.fork-div div.comments article {
+  margin: 10px 0;
+  border-bottom: solid 1px grey;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 0.8rem;
+  color: #606060;
+}
+
+main div.fork-div div.comments article:first-child {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #323131;
+}
+
+main div.fork-div div.comments article i {
+  margin-right: 5px;
+  margin-bottom: auto;
+}
+/*# sourceMappingURL=style.css.map */

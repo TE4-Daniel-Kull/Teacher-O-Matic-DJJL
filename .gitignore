@@ -2,3 +2,6 @@ node_modules/
 coverage/
 cover/
 .DS_Store
+public/js/config.js
+db/
+Handout Projekt 2 - Teacher-O-Matic.pdf

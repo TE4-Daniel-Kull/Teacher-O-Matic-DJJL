@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Run all unit tests
       run: |
-        echo Run test
+        # echo Run test
         # npm install
         # npm run test
   lint:
@@ -23,6 +23,6 @@ jobs:
     - name: Check for linting
       run: |
         echo Run lint
-        # npm install
-        # npm run lint
+        npm install
+        npm run lint
 

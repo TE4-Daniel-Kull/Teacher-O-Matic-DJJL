@@ -1,0 +1,30 @@
+{
+  "name": "teacher-o-matic",
+  "version": "1.0.0",
+  "description": "[![Actions Status](https://github.com/itggot-TE4/TE4/workflows/tests/badge.svg)](https://github.com/itggot-TE4/Yala/actions) # TE4 Template project for projects at TE4",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/jest",
+    "test:coverage": "node_modules/.bin/jest --coverage",
+    "lint": "node_modules/.bin/eslint .",
+    "jsdoc": "node_modules/.bin/jsdoc -d docs public/js/ README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itggot-TE4/Teacher-O-Matic-DJJL.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itggot-TE4/Teacher-O-Matic-DJJL/issues"
+  },
+  "homepage": "https://github.com/itggot-TE4/Teacher-O-Matic-DJJL#readme",
+  "dependencies": {
+    "jest": "^24.9.0",
+    "jsdoc": "^3.6.3"
+  },
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-config-google": "^0.14.0"
+  }
+}
