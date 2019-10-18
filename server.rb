@@ -1,96 +1,102 @@
-class Server < Sinatra::Base
+require_relative 'models/database_model.rb'
+require_relative 'models/comment.rb'
 
-    # def initialize
-    #     super
-    #     #@db = SQLite3::Database.new('db/company.db')
-    #    # @db.results_as_hash = true
-    # end
-   
-    # before do
-    #     #content_type :json    
-    #     #headers 'Access-Control-Allow-Origin' => '*', 
-    #     #    'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']  
-    # end
-    
-    # set :protection, false
+class Server < Sinatra::Base
+    before do
+        #content_type :json    
+        headers 'Access-Control-Allow-Origin' => '*', 
+                'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']  
+    end
+    set :protection, false
+
 
     get '/' do 
         erb :index
     end
 
-#     get '/slow' do
-#         content_type :json
-#         sleep 2
-#         return {result: 'slow'}.to_json
-#     end
+    # Show all
+    get '/api/comments' do
+        return Comment.all().to_json
+    end
 
-#     get '/app' do
-#         erb :api
-#     end
+    # Update
+    put '/api/comments' do
+        body = JSON.parse(request.body.read)
+        id = body['id']
+        type = body['type']
+        message = body['message']
 
-#     #CRUD-interface med JS
-    
-#     #index
-#     get '/api/employees' do 
-#         content_type :json
-#        # @db.execute('SELECT * FROM employees').to_json
-#     end
+        Comment.update(id, type, message)
+    end
 
-#     #show
-#     get '/api/employees/:id' do
-#         content_type :json
-#         #@db.execute('SELECT * FROM employees WHERE id = ?', params['id']).first.to_json
-#     end
+    # Create
+    post '/api/comments' do
+        puts "It works"
+        body = JSON.parse(request.body.read)
+        fork_id = body['fork_id']
+        type = body['type']
+        message = body['message']
 
-#     #new
-#     get '/api/employees/new' do
-#         content_type :json
-#         {fields: [{name:  'text'},
-#                   {email: 'text'},
-#                   {phone: 'tel'},
-#                   {department_id: 'number'},
-#                   {img:  'image'}]}.to_json
-#     end
+        Comment.create(fork_id, type, message)
+        return "ok".to_json
+    end
 
-#     #edit
-#     get '/api/employees/:id/edit' do
-#         content_type :json
-#         result = @db.execute('SELECT * FROM employees WHERE id = ?', params['id']).first
-#         {employee: result,
-#          fields: [
-#              {name: 'name',          type: 'text',   value: result['name']},
-#              {name: 'email',         type: 'text',   value: result['email']},
-#             {name: 'phone',         type: 'tel',    value: result['phone']},
-#             {name: 'department_id', type: 'number', value: result['department_id']},
-#             {name: 'img',           type: 'img',    value: result['img']}]}.to_json
-#     end
+    # Delete
+    delete '/api/comments' do 
+        body = JSON.parse(request.body.read)
+        id = body['id']
 
-#     #update
-#     patch '/api/employees/:id' do
-#         content_type :json
-#         result = @db.execute('UPDATE employees 
-#                               SET name=?, email=?, phone=?, department_id=?, img=?
-#                               WHERE id = ?',
-#                               [params['name'], params['email'], params['phone'], params['department_id'], params['img'], params['id']])
-#         return {result: 'success'}.to_json                             
-#     end
+        Comment.delete(id)
+    end
 
-#     #create
-#     post '/api/employes/' do
-#         content_type :json
-#         result = @db.execute('INSERT into employees (name, email, phone, department_id, img) 
-#                               VALUES (?,?,?,?,?)',
-#                               params['name'], params['email'], params['phone'], params['department_id'], params['img'])
-#         return {result: 'success'}.to_json        
-#     end
+    # Show comments from git_id
+    get '/api/fork_comments/:git_id' do
+        git_id = params['git_id']
+        p git_id.to_i
+        comments = []
+        # fork_id = Comment.get_fork_id(git_id.to_i)
+        comments = Comment.get(git_id).to_json
+        p "comments #{comments}"
 
-#     #destroy 
-#     delete '/api/employees/:id' do
-#         content_type :json
-#         result = @db.execute('DELET FROM users WHERE id = ?', params['id'])
-#     end
-
-
-
-
+        return comments
+    end
 end
+
+# GET ALL COMMENTS
+# let newPath = window.location.origin.concat('/api/comments');
+# const response = await fetch(newPath)
+# const jsonResponse = await response.json()
+
+# UPDATE COMMENT
+# let newPath = window.location.origin.concat('/api/comments');
+# let id = 13
+# let type = '101'
+# let message = "IT IS AWSOME!"
+# const response = await fetch(newPath, {
+#     method: 'PUT',
+#     body: JSON.stringify({id: id, type: type, message: message}),
+# });
+
+
+# DELETE COMMENT
+# let newPath = window.location.origin.concat('/api/comments');
+# let id = 13
+# const response = await fetch(newPath, {
+#     method: 'DELETE',
+#     body: JSON.stringify({id: id}),
+# });
+
+# CREATE COMMENT
+# let fork_id = 1
+# let newPath = window.location.origin.concat('/api/comments');
+# let type = '101'
+# let message = "Well done my booi!"
+# const response = await fetch(newPath, {
+#     method: 'POST',
+#     body: JSON.stringify({fork_id: fork_id, type: type, message: message}),
+# });
+
+# GET COMMENTS FROM GIT ID
+# let newPath = window.location.origin.concat('/api/fork_comments');
+# let git_id = 0
+# const response = await fetch(newPath + "/" + git_id)
