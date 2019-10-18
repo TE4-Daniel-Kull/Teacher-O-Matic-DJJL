@@ -21,4 +21,9 @@ module.exports = {
     'max-len': 'warn',
     'no-tabs': 'off'
   },
+  'overrides': [
+    {
+      'files': 'public/js/*'
+    }
+  ]
 };
