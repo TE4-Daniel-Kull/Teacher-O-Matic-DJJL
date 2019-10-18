@@ -70,7 +70,7 @@ export class API {
    *
    * @return {String} A String displaying data
    */
-  static async fileContent(url, filePath) {
+  static async fileContent(url, filePath) { // eslint-disable-line no-trailing-spaces
     const response = await fetch(`${url}/contents/${filePath}${oauth}`);
     const data = await response.json();
     if (data.message == 'Not Found') {
@@ -85,7 +85,7 @@ export class API {
         method: 'POST',
         body: JSON.stringify({fork_id: id, // eslint-disable-line camelcase
           type: status,
-          message: comment}),  
+          message: comment}),
     });
     const data = await response.json();
     return data;
