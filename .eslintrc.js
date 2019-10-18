@@ -23,7 +23,8 @@ module.exports = {
   },
   'overrides': [
     {
-      'files': 'public/js/*'
+      'files': 'public/js/*',
+      'excludedFiles': 'docs/*'
     }
   ]
 };
