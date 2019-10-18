@@ -80,18 +80,18 @@ export class API {
   }
 
   static async createComment(comment, status, id) {
-    let newPath = window.location.origin.concat('/api/comments');
+    const newPath = window.location.origin.concat('/api/comments');
     const response = await fetch(newPath, {
         method: 'POST',
-        body: JSON.stringify({fork_id: id, type: status, message: comment}),
+        body: JSON.stringify({fork_id: id, type: status, message: comment}),  // eslint-disable-line camelcase
     });
     const data = await response.json();
     return data;
   }
 
-  static async getComments(fork_id) {
+  static async getComments(forkId) {
     let newPath = window.location.origin.concat('/api/fork_comments');
-    const response = await fetch(newPath + "/" + fork_id);
+    const response = await fetch(newPath + '/' + forkId);
     const data = await response.json();
     return data;
   }
