@@ -26,9 +26,15 @@ export class EventListener {
       Generator.clear();
       const forks = await API.forks(href);
       const mainManifest = await API.manifest(href);
-      await forks.forEach(async (fork) => {
-        await Generator.forkCard(fork, mainManifest);
-      });
+      if (mainManifest.status != 'error') {
+        await forks.forEach(async (fork) => {
+          await Generator.forkCard(fork, mainManifest);
+        });
+      } else {
+        qS('main').classList.remove('double');
+        qS('main').insertAdjacentHTML('beforeend',
+        `<h1>${mainManifest.message}</h1>`);
+      }
     }
   }
 
