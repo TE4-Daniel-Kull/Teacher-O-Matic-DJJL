@@ -20,5 +20,5 @@ module.exports = {
     'require-jsdoc': 'off',
     'max-len': 'warn',
     'no-tabs': 'off'
-  },
+  }
 };
